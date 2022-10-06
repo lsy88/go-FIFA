@@ -1,0 +1,22 @@
+appname: "FIFA"
+mode: "dev"
+port: "8080"
+url: "https://www.fifa.com/tournaments/mens/worldcup/2018russia"
+
+pgsql:
+  #host: "119.45.216.151"
+  host: "localhost"
+  port: 5432
+  user: "postgres"
+  password: "716523"
+  db: "FIFA"
+
+log:
+  level: "debug"
+  filename: "./log/blog.log"
+  max_size: 10000
+  max_age: 3600
+  max_backups: 5
+
+jwt:
+  SigningKey: "FIFA"

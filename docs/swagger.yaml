@@ -1,0 +1,480 @@
+definitions:
+  response.ResponseData:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+    type: object
+host: http://127.0.0.1:8080/FIFA/v1/api
+info:
+  contact: {}
+  description: 世界杯后台系统
+  termsOfService: http://swagger.io/terms/
+  title: FIFA
+  version: "1.0"
+paths:
+  /admin/login:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 登录业务接口
+      parameters:
+      - description: 姓名
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 登录业务接口
+      tags:
+      - Admin
+  /admin/register:
+    post:
+      consumes:
+      - multipart/form-data
+      description: 管理员注册接口
+      parameters:
+      - description: 姓名
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      - description: 电话
+        in: formData
+        name: phone
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      security:
+      - Bearer: []
+      summary: 管理员注册接口
+      tags:
+      - Admin
+  /award:
+    get:
+      description: 查找奖牌
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有奖牌接口
+      tags:
+      - Award
+  /award/:id:
+    get:
+      description: 查找单奖牌
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 奖牌id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单个奖牌接口
+      tags:
+      - Award
+  /award/info/:keyword:
+    get:
+      description: 根据关键字查找奖牌
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 关键字
+        in: query
+        name: keyword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单个奖牌接口
+      tags:
+      - Award
+  /classic/:year:
+    get:
+      description: 根据年份查找记录
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 年份
+        in: query
+        name: year
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询比赛接口
+      tags:
+      - Classic
+  /classic/list:
+    get:
+      description: 查找比赛列表
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有比赛接口
+      tags:
+      - Classic
+  /coach:
+    get:
+      description: 查找教练
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有教练接口
+      tags:
+      - Coach
+  /coach/:id:
+    get:
+      description: 查找单教练
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 教练ID
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单个教练接口
+      tags:
+      - Coach
+  /group:
+    get:
+      description: 查找小组
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有小组接口
+      tags:
+      - Group
+  /group/:id:
+    get:
+      description: 查找单个小组
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 小组id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单个小组接口
+      tags:
+      - Group
+  /match:
+    get:
+      description: 查找比赛
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有比赛接口
+      tags:
+      - Match
+  /match/:id:
+    get:
+      description: 查找单次比赛
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 比赛id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单次比赛接口
+      tags:
+      - Match
+  /player:
+    get:
+      description: 查找球员
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有球员接口
+      tags:
+      - Player
+  /player/:id:
+    get:
+      description: 查找单个球员
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 球员id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单个球员接口
+      tags:
+      - Player
+  /statistics/players/goals:
+    get:
+      description: 查找球员奖牌
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 姓名
+        in: formData
+        name: name
+        type: string
+      - description: 得分
+        in: formData
+        name: goal
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询球员得奖接口
+      tags:
+      - Statistics
+  /statistics/players/goals/:rank:
+    get:
+      description: 查找排名
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 排名
+        in: query
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询排名接口
+      tags:
+      - Statistics
+  /statistics/players/saves:
+    get:
+      description: 查找球员奖牌
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 排名
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询球员得奖接口
+      tags:
+      - Statistics
+  /statistics/players/saves/:rank:
+    get:
+      description: 查找排名
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 排名
+        in: query
+        name: rank
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询排名接口
+      tags:
+      - Statistics
+  /team:
+    get:
+      description: 查找球队
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询所有球队接口
+      tags:
+      - Team
+  /team/:id:
+    get:
+      description: 查找单个球队
+      parameters:
+      - description: Bearer 用户令牌
+        in: header
+        name: Authorization
+        type: string
+      - description: 队伍id
+        in: query
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseData'
+      summary: 查询单个球队接口
+      tags:
+      - Team
+swagger: "2.0"
